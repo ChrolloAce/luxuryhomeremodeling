@@ -1,15 +1,5 @@
 {
-  "version": 2,
-  "builds": [
-    { 
-      "src": "YeshuaCleaning copy 2/package.json", 
-      "use": "@vercel/next",
-      "config": {
-        "distDir": ".next"
-      }
-    }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/YeshuaCleaning copy 2/$1" }
-  ]
+  "buildCommand": "cd \"YeshuaCleaning copy 2\" && npm run build",
+  "outputDirectory": "YeshuaCleaning copy 2/.next",
+  "framework": "nextjs"
 } 
