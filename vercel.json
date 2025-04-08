@@ -1,3 +1,7 @@
 {
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "projectSettings": {
+    "rootDirectory": "YeshuaCleaning copy 2",
+    "framework": "nextjs"
+  }
 } 
