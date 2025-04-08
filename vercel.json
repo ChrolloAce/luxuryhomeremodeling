@@ -1,5 +1,4 @@
 {
-  "outputDirectory": "dist",
-  "buildCommand": "cd \"YeshuaCleaning copy 2\" && npm run build && mkdir -p ../dist && cp -r .next/* ../dist/",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "rootDirectory": "YeshuaCleaning copy 2"
 } 
