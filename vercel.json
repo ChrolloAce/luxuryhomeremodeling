@@ -1,0 +1,5 @@
+{
+  "outputDirectory": "YeshuaCleaning copy 2/.next",
+  "buildCommand": "cd \"YeshuaCleaning copy 2\" && npm run build",
+  "installCommand": "cd \"YeshuaCleaning copy 2\" && npm install"
+} 
