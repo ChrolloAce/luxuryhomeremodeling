@@ -36,7 +36,7 @@ const Hero = () => {
       });
       
       // Send email notification
-      await fetch('/api/send-email', {
+      const emailResponse = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,11 +44,26 @@ const Hero = () => {
         body: JSON.stringify(formData),
       });
       
+      const emailResult = await emailResponse.json();
+      
+      if (!emailResponse.ok) {
+        throw new Error(emailResult.error || 'Failed to send email');
+      }
+      
+      // Log success for debugging
+      console.log('Email sent successfully:', emailResult);
+      
       // Navigate to thank you page
       router.push('/thank-you');
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('There was an error submitting your form. Please try again.');
+      
+      // Show more informative error message
+      const errorMessage = error instanceof Error 
+        ? `There was an error: ${error.message}`
+        : 'There was an error submitting your form. Please check your network connection and try again.';
+      
+      alert(errorMessage);
     }
   };
 
