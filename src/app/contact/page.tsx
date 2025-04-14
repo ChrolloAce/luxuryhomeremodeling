@@ -45,26 +45,34 @@ const ContactPage = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     
-    // Send data to webhook
-    fetch('https://hook.us2.make.com/neln229u0by16e8y53nprbdbacgeabol', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then(response => {
-        console.log('Webhook response:', response);
-        router.push('/thank-you');
-      })
-      .catch(error => {
-        console.error('Error submitting form:', error);
-        alert('There was an error submitting your form. Please try again.');
+    try {
+      // Send data to webhook
+      await fetch('https://hook.us2.make.com/neln229u0by16e8y53nprbdbacgeabol', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+      
+      // Send email notification
+      await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      router.push('/thank-you');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting your form. Please try again.');
+    }
   };
 
   // Contact information
